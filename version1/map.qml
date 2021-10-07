@@ -1,8 +1,7 @@
 import QtQuick 2.0
-import QtLocation 5.8
-import QtPositioning 5.8
+import QtLocation 5.6
+import QtPositioning 5.6
 import QtQuick.Controls 2.15
-
 
 
 
@@ -11,16 +10,9 @@ Rectangle{
     property double oldlng: 120.2058
     property var recentFiles: []
     property var tiptitle: ["date : ","ID : ","class : ", "length : "]
-    property var colortype: ["red","yellow","green", "blue"]
-    property var animaltype: ["tuna","shark","marlin", "none"]
     Plugin{
         id:mapPlugin
-        name: "osm"
-
-
-
-    }
-
+        name: "osm"}
 
 
     Map{
@@ -29,12 +21,7 @@ Rectangle{
         plugin: mapPlugin
         center:QtPositioning.coordinate(oldlat,oldlng);
         zoomLevel:6
-        //PluginParameter { name: "osm.mapping.custom.host"; value: "0cf39d2b3cf048539cdc2a4bca87cada" }
-        activeMapType: supportedMapTypes[10]    // 2 4
-
         onCenterChanged: {
-
-
             h1.radius=5000.0*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))
             for (var i=0;i<recentFiles.length;i++){
              recentFiles[i].radius=5000.0*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))
@@ -72,6 +59,38 @@ Rectangle{
 
 
         }
+
+
+
+
+
+
+        MapCircle {
+            center {
+                latitude: oldlat+1
+                longitude: oldlng
+            }
+            radius: 5000.0
+            color: 'red'
+            border.width: 3
+
+            property string toolTipText: "message \nmmmm"
+            ToolTip.text: toolTipText
+            ToolTip.visible: toolTipText ? mas.containsMouse : false
+            //MouseArea {
+            //       anchors.fill: parent
+            //       onClicked: { console.log("5454 world") }
+           // }
+            MouseArea {
+                id: mas
+                anchors.fill: parent
+                hoverEnabled: true
+            }
+        }
+
+
+
+
         Component{
                id: provider
                MapCircle{
@@ -84,6 +103,13 @@ Rectangle{
                    ToolTip.text: toolTipText
 
                    ToolTip.visible: toolTipText ? msas.containsMouse : false
+
+
+
+                   //MouseArea {
+                   //       anchors.fill: parent
+                   //       onClicked: { console.log("5454 world") }
+                  // }
                    MouseArea {
                        id: msas
                        anchors.fill: parent
@@ -95,30 +121,76 @@ Rectangle{
 
     }
 
+
+    MapCircle {
+        id:h2
+        center:QtPositioning.coordinate(oldlat,oldlng-2);
+        radius: 5000.0
+        color: 'blue'
+        border.width: 3
+        property string toolTipText: "message \nmmmm"
+        ToolTip.text: toolTipText
+        ToolTip.visible: toolTipText ? m.containsMouse : false
+        //MouseArea {
+        //       anchors.fill: parent
+        //       onClicked: { console.log("5454 world") }
+       // }
+        MouseArea {
+            id: m
+            anchors.fill: parent
+            hoverEnabled: true
+        }
+    }
+
+
+
     function setCenter(lat,lng){
-        mapView.center.latitude=lat
-        mapView.center.longitude=lng
-        mapView.zoomLevel =10
+        recentFiles=[]
+        mapView.pan(oldlat-lat,oldlng-lng)
+        //mapView.circle(oldlat,oldlng,20);
+        oldlat=lat
+        oldlng=lng
+        //var Component = Qt.createComponent("qrc:/map.qml")
+        //var item = Component.createObject(mapPlugin, {coordinate: QtPositioning.coordinate(lat, lng)})
+        h1.radius=10000;
+        h1.center=QtPositioning.coordinate(oldlat,oldlng);
+
+        h1.visible=false
+        console.log(h1.center);
+        //h1.claer();
+        var o  = provider.createObject(mapView)
+        //o.append({id:hhh})
+
+        o.center=QtPositioning.coordinate(oldlat,oldlng+10);
+        o.ToolTip.text="hello world";
+        mapView.addMapItem(o)
+        recentFiles.push(o)
+        var p  = provider.createObject(mapView)
+        p.center=QtPositioning.coordinate(oldlat,oldlng+5);
+        mapView.addMapItem(p)
+        recentFiles.push(p)
+        //console.log(mo.mouseX,' ',mo.mouseY);
+        //mapView.povider.p.visible=false
+        //recentFiles[0].visible=false
+        //console.log(recentFiles.length)
+
+
+        mapView.addMapItem( h2)
     }
 
 
     function remove(){
-
         //mapView.p.visible=false
         console.log(recentFiles.length)
 
         for (var i=0;i<recentFiles.length;i++){
-         //mapView.removeMapItem(recentFiles[i])
 
          recentFiles[i].visible=false
-         //recentFiles.pop()
         }
-        recentFiles=[]
 
 
     }
     function testd(list_test){
-
 
 
         //mapView.p.visible=false
@@ -129,29 +201,9 @@ Rectangle{
         for (var i=0;i<3;i++){
           temp.ToolTip.text=temp.ToolTip.text+"\n"+tiptitle[i+1]+list_test[i+1];
         }
-        temp.color= search(list_test[2])
-        temp.border.color = search(list_test[2])
+        //temp.ToolTip.border.color= "red";
         mapView.addMapItem(temp)
         recentFiles.push(temp)
-        //mapView.zoomLevel=mapView.zoomLevel+1
-        //mapView.zoomLevel=mapView.zoomLevel-1
-
-    }
-
-    function search(txt)
-    {
-        console.log(txt)
-        for (var i=0;i<4;i++)
-        {
-            console.log("sss")
-            console.log(txt)
-            console.log(txt==animaltype[i])
-            if (animaltype[i]==txt){
-                return colortype[i]
-            }
-        }
-
-        return colortype[3]
     }
 
 

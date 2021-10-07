@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include <QVariant>
-#include <QString>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,7 +15,6 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
 
 private:
     Ui::MainWindow *ui;
@@ -32,6 +30,6 @@ private slots:
     void on_pushButton_clicked();
     void on_pushButton_4_clicked();
     void on_pushButton_3_clicked();
-    void on_pushButton_2_clicked();
+    void mssql_get_datafun1();
 };
 #endif // MAINWINDOW_H
