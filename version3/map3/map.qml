@@ -72,8 +72,6 @@ Rectangle{
 
 
         }
-
-
         Component{
                id: provider
                MapCircle{
@@ -84,7 +82,7 @@ Rectangle{
                    border.width: 3
                    property string toolTipText: " "
                    ToolTip.text: toolTipText
-                   //ToolTip.background:
+
                    ToolTip.visible: toolTipText ? msas.containsMouse : false
                    MouseArea {
                        id: msas
@@ -100,7 +98,7 @@ Rectangle{
     function setCenter(lat,lng){
         mapView.center.latitude=lat
         mapView.center.longitude=lng
-        //mapView.zoomLevel =2
+        mapView.zoomLevel =10
     }
 
 
@@ -137,18 +135,17 @@ Rectangle{
         recentFiles.push(temp)
         //mapView.zoomLevel=mapView.zoomLevel+1
         //mapView.zoomLevel=mapView.zoomLevel-1
-        setCenter(22.9989,120.2169)
 
     }
 
     function search(txt)
     {
-        //console.log(txt)
+        console.log(txt)
         for (var i=0;i<4;i++)
         {
-            //console.log("sss")
-            //console.log(txt)
-            //console.log(txt==animaltype[i])
+            console.log("sss")
+            console.log(txt)
+            console.log(txt==animaltype[i])
             if (animaltype[i]==txt){
                 return colortype[i]
             }

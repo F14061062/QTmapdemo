@@ -16,10 +16,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
     void Change_buttom_statue(int i);
     void plot_map();
-    void plot_map(int i);
 
 
 

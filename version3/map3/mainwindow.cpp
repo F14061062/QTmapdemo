@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+
 #include <QQuickItem>
 #include<QtSql/QtSql>
 #include<QtSql/QSqlDatabase>
@@ -12,14 +13,10 @@
 #include <QVector2D>
 #include <QString>
 #include <QCompleter>
-#include <QtCharts>
 
 
 class filter_main_fun{
-    public:
-    virtual QVector<QStringList> filter_tuna(QVector<QStringList> olddata,QString Filter_target)=0;
-    virtual QStringList filter_id(QVector<QStringList> data);
-    virtual QVector<QStringList> filter_certain_id(QVector<QStringList> data,QString Id);
+
 };
 
 
@@ -30,8 +27,6 @@ class data_main_fun{
     virtual bool statue()=0;
     virtual void data_split(QVector<QStringList> input)=0;
 };
-
-
 
 class database_getdata:public data_main_fun
 {
@@ -120,24 +115,8 @@ class filter_data{
                 array.append(data[i][1]);
             }
         }
-        if(array.length()>1){
-            array.append("Not_Limit");
-        }
         return array;
     }
-
-    QVector<QStringList> filter_certain_id(QVector<QStringList> data,QString Id)
-    {
-        QVector<QStringList> f_data;
-        for (int i=0 ; i<data.size();i++){
-            if (data[i][1]==Id){
-                f_data.append(data[i]);
-            }
-        }
-
-        return f_data;
-    }
-
     private:
 
     bool _Search(QStringList Name_list,QString Target){
@@ -256,14 +235,12 @@ void MainWindow::on_pushButton_3_clicked()
 {
     qDebug() <<"press 3" << endl;
     QMessageBox::information(this,"statue",ui->comboBox->currentText());
-    ui->quickWidget->setVisible(0);
 
 }
 
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    ui->quickWidget->setVisible(1);
     QVector<QStringList> data =ddb->get_data();
 
     filter_data ss;
@@ -276,7 +253,6 @@ void MainWindow::on_pushButton_2_clicked()
 
 
 void MainWindow::plot_map(){
-    emit remove();
     filter_data *ss=new filter_data;
     QVector<QStringList> *ffilter_data= new QVector<QStringList>;
     QVector<QStringList> data =ddb->get_data();
@@ -293,53 +269,10 @@ void MainWindow::plot_map(){
     qDebug() <<*ffilter_data<<endl;
     QStringList Id_array=ss->filter_id(*ffilter_data);
     qDebug() <<Id_array<<endl;
-
-
     completer->setModel(new QStringListModel( Id_array, completer ) );
     ui->comboBox->clear();
     ui->comboBox->addItems(Id_array);
-    if(Id_array.length()>1){
-        ui->comboBox->setCurrentIndex(Id_array.length()-1);
-    }
-    for (int i=0;i<ffilter_data->length();i++){
-        emit testd((*ffilter_data)[i]);
-    }
-    delete ffilter_data;
-    delete ss;
-}
 
-
-void MainWindow::plot_map(int i){
-    emit remove();
-    filter_data *ss=new filter_data;
-    QVector<QStringList> *ffilter_data= new QVector<QStringList>;
-    QVector<QStringList> data =ddb->get_data();
-    QStringList Data_statue={QString::number(int(Qt::Checked ==ui->Tuna_filter_checkbox->checkState())),
-                             QString::number(int(Qt::Checked ==ui->Shark_filter_checkbox->checkState())),
-                             QString::number(int(Qt::Checked ==ui->Marlin_filter_checkbox->checkState()))};
-    QStringList Data_target={"tuna","shark","marlin"};
-    for (int i=0;i<Data_statue.length();i++){
-        if(Data_statue[i]=="1"){
-            QVector<QStringList> ddata = ss->filter_tuna(data,Data_target[i]);
-            ffilter_data->append(ddata);
-        }
-    }
-    QVector<QStringList> *f_data=new QVector<QStringList>;
-    if (ui->comboBox->currentText() != "Not_Limit"){
-        f_data->append(ss->filter_certain_id(*ffilter_data,ui->comboBox->currentText()));
-    //qDebug() <<"hello"<<f_data << endl;
-    }else{
-        f_data->append(*ffilter_data);
-
-    }
-    qDebug() <<"www"<<f_data->length()<< endl;
-
-    for(int i=0;i<f_data->length();i++){
-         //qDebug() <<"www"<<i<< endl;
-        emit testd((*f_data)[i]);
-    }
-    delete ss;
-    delete f_data;
     delete ffilter_data;
 }
 
@@ -348,7 +281,6 @@ void MainWindow::on_comboBox_currentIndexChanged(const QString &arg1)
 {
     qDebug() <<ui->comboBox->currentText() << endl;
     qDebug() <<QString::number(int(Qt::Checked ==ui->Tuna_filter_checkbox->checkState())) <<endl;
-    plot_map(0);
 }
 
 
