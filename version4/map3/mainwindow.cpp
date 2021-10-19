@@ -13,7 +13,6 @@
 #include <QString>
 #include <QCompleter>
 #include <QtCharts>
-#include <QDate>
 
 
 class filter_main_fun{
@@ -163,11 +162,6 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    //ui->dateEdit->setDate(QDate::currentDate());
-    //ui->dateEdit->setMinimumDate(QDate::currentDate().addDays(-365));
-    //ui->dateEdit->setMaximumDate(QDate::currentDate().addDays(365));
-    //ui->dateEdit->setDisplayFormat("yyyy.MM.dd");
-
 
     ddb->first_setting();
     QVector<QStringList> ttemp =ddb->get_data();
@@ -178,17 +172,6 @@ MainWindow::MainWindow(QWidget *parent)
         ui->quickWidget->setSource(QUrl(QString("qrc:/map.qml")));
         ui->quickWidget->show();
         ui->widget_2->setVisible(false);
-
-        ui->dateEdit->setDate(QDate::currentDate());
-        ui->dateEdit->setMinimumDate(QDate::currentDate().addDays(-365));
-        ui->dateEdit->setMaximumDate(QDate::currentDate().addDays(365));
-        ui->dateEdit->setDisplayFormat("yyyy.MM.dd");
-
-        ui->dateEdit_2->setDate(QDate::currentDate());
-        ui->dateEdit_2->setMinimumDate(QDate::currentDate().addDays(-365));
-        ui->dateEdit_2->setMaximumDate(QDate::currentDate().addDays(365));
-        ui->dateEdit_2->setDisplayFormat("yyyy.MM.dd");
-
     }else{
         QMessageBox::information(this,"unconnect","unconnect");
 
@@ -433,38 +416,5 @@ void MainWindow::on_Allfish_filter_checkbox_clicked()
         //ui->Allfish_filter_checkbox->setChecked(1);
     }
     plot_map();
-}
-
-
-
-
-void MainWindow::on_dateEdit_dateChanged(const QDate &date)
-{
-    QString str;
-    str = date.toString("dd.MM.yyyy");
-    str = str.trimmed();
-    QDate bb = QDate::fromString(str,"dd.MM.yyyy");
-
-    QDate enddd = ui->dateEdit_2->date();
-    //ui->label_3->setText(str);
-
-    if (enddd>bb)
-    {
-    }
-    else
-    {
-    ui->dateEdit_2->setDate(bb);
-    ui->dateEdit_2->setMinimumDate(bb);
-    //ui->label_3->setText(str);
-    }
-}
-
-
-
-
-void MainWindow::on_dateEdit_2_dateChanged(const QDate &date)
-{
-    QString str2;
-    str2 = date.toString("dd.MM.yyyy");
 }
 

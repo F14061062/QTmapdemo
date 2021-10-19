@@ -32,7 +32,9 @@ Rectangle{
         //PluginParameter { name: "osm.mapping.custom.host"; value: "0cf39d2b3cf048539cdc2a4bca87cada" }
         activeMapType: supportedMapTypes[10]    // 2 4
 
-        onCenterChanged: {//revise
+        onCenterChanged: {
+
+
             h1.radius=5000.0*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))
             for (var i=0;i<recentFiles.length;i++){
              recentFiles[i].radius=5000.0*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))

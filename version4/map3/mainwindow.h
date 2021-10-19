@@ -20,6 +20,9 @@ public:
     void Change_buttom_statue(int i);
     void plot_map();
     void plot_map(int i);
+
+
+
 private:
     Ui::MainWindow *ui;
 
@@ -40,7 +43,5 @@ private slots:
     void on_Shark_filter_checkbox_clicked();
     void on_Marlin_filter_checkbox_clicked();
     void on_Allfish_filter_checkbox_clicked();
-    void on_dateEdit_dateChanged(const QDate &date);
-    void on_dateEdit_2_dateChanged(const QDate &date);
 };
 #endif // MAINWINDOW_H
