@@ -33,9 +33,9 @@ Rectangle{
         activeMapType: supportedMapTypes[10]    // 2 4
 
         onCenterChanged: {//revise
-            h1.radius=5000.0*(13/(mapView.zoomLevel))*(6/(mapView.zoomLevel))+5000.0*(0.5/(mapView.zoomLevel))-3000;
+            h1.radius=5000.0*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))
             for (var i=0;i<recentFiles.length;i++){
-             recentFiles[i].radius=5000.0*(13/(mapView.zoomLevel))*(6/(mapView.zoomLevel))+5000.0*(0.5/(mapView.zoomLevel))-3000;
+             recentFiles[i].radius=5000.0*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))*(6/(mapView.zoomLevel))
             }
         }
         MapCircle {
@@ -122,7 +122,7 @@ Rectangle{
 
 
         //mapView.p.visible=false
-        //console.log(list_test[0])
+        console.log(list_test[0])
         var temp  = provider.createObject(mapView)
         temp.center=QtPositioning.coordinate(list_test[4],list_test[5]);
         temp.ToolTip.text=tiptitle[0]+list_test[0];

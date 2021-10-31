@@ -5,9 +5,6 @@
 #include <QVariant>
 #include <QString>
 
-
-
-
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -23,10 +20,7 @@ public:
     void Change_buttom_statue(int i);
     void plot_map();
     void plot_map(int i);
-    void plot_map1();
-    void plot_map1(int i);
-    void plot_table();
-protected:
+private:
     Ui::MainWindow *ui;
 
 signals:
@@ -48,9 +42,5 @@ private slots:
     void on_Allfish_filter_checkbox_clicked();
     void on_dateEdit_dateChanged(const QDate &date);
     void on_dateEdit_2_dateChanged(const QDate &date);
-    void on_pushButton_5_clicked();
-    void on_pushButton_6_clicked();
-    void on_pushButton_7_clicked();
-
 };
 #endif // MAINWINDOW_H

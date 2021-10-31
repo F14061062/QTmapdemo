@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1124</width>
+    <height>654</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QQuickWidget" name="quickWidget">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>160</y>
+      <width>1041</width>
+      <height>461</height>
+     </rect>
+    </property>
+    <property name="resizeMode">
+     <enum>QQuickWidget::SizeRootObjectToView</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>20</y>
+      <width>141</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>20</y>
+      <width>611</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <widget class="QWidget" name="widget_3" native="true">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>611</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>50</y>
+        <width>80</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>shark</string>
+      </property>
+     </widget>
+     <widget class="QDateEdit" name="dateEdit">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>20</y>
+        <width>110</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="toolTipDuration">
+       <number>0</number>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QCalendarWidget QToolButton {
+height: 60px;
+width: 150px;
+color: white;
+font-size: 24px;
+icon-size: 56px, 56px;
+background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 #cccccc, stop: 1 #333333);
+}
+QCalendarWidget QMenu {
+width: 150px;
+left: 20px;
+color: white;
+font-size: 18px;
+background-color: rgb(100, 100, 100);
+}
+QCalendarWidget QSpinBox {
+width: 150px;
+font-size:24px;
+color: white;
+background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 #cccccc, stop: 1 #333333);
+selection-background-color: rgb(136, 136, 136);
+selection-color: rgb(255, 255, 255);
+}
+QCalendarWidget QSpinBox::up-button { subcontrol-origin: border; subcontrol-position: top right; width:65px; }
+QCalendarWidget QSpinBox::down-button {subcontrol-origin: border; subcontrol-position: bottom right; width:65px;}
+QCalendarWidget QSpinBox::up-arrow { width:56px; height:56px; }
+QCalendarWidget QSpinBox::down-arrow { width:56px; height:56px; }
+
+/* header row */
+QCalendarWidget QWidget { alternate-background-color: rgb(128, 128, 128); }
+
+/* normal days */
+QCalendarWidget QAbstractItemView:enabled
+{
+font-size:24px;
+color: rgb(180, 180, 180);
+background-color: black;
+selection-background-color: rgb(64, 64, 64);
+selection-color: rgb(0, 255, 0);
+}
+
+/* days in other months */
+/* navigation bar */
+QCalendarWidget QWidget#qt_calendar_navigationbar
+{
+background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 #cccccc, stop: 1 #333333);
+}
+
+QCalendarWidget QAbstractItemView:disabled
+{
+color: rgb(64, 64, 64);
+}</string>
+      </property>
+      <property name="accelerated">
+       <bool>false</bool>
+      </property>
+      <property name="currentSection">
+       <enum>QDateTimeEdit::YearSection</enum>
+      </property>
+      <property name="calendarPopup">
+       <bool>true</bool>
+      </property>
+      <property name="currentSectionIndex">
+       <number>0</number>
+      </property>
+     </widget>
+     <widget class="QDateEdit" name="dateEdit_2">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>20</y>
+        <width>110</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QCalendarWidget QToolButton {
+height: 60px;
+width: 150px;
+color: white;
+font-size: 24px;
+icon-size: 56px, 56px;
+background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 #cccccc, stop: 1 #333333);
+}
+QCalendarWidget QMenu {
+width: 150px;
+left: 20px;
+color: white;
+font-size: 18px;
+background-color: rgb(100, 100, 100);
+}
+QCalendarWidget QSpinBox {
+width: 150px;
+font-size:24px;
+color: white;
+background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 #cccccc, stop: 1 #333333);
+selection-background-color: rgb(136, 136, 136);
+selection-color: rgb(255, 255, 255);
+}
+QCalendarWidget QSpinBox::up-button { subcontrol-origin: border; subcontrol-position: top right; width:65px; }
+QCalendarWidget QSpinBox::down-button {subcontrol-origin: border; subcontrol-position: bottom right; width:65px;}
+QCalendarWidget QSpinBox::up-arrow { width:56px; height:56px; }
+QCalendarWidget QSpinBox::down-arrow { width:56px; height:56px; }
+
+/* header row */
+QCalendarWidget QWidget { alternate-background-color: rgb(128, 128, 128); }
+
+/* normal days */
+QCalendarWidget QAbstractItemView:enabled
+{
+font-size:24px;
+color: rgb(180, 180, 180);
+background-color: black;
+selection-background-color: rgb(64, 64, 64);
+selection-color: rgb(0, 255, 0);
+}
+
+/* days in other months */
+/* navigation bar */
+QCalendarWidget QWidget#qt_calendar_navigationbar
+{
+background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 #cccccc, stop: 1 #333333);
+}
+
+QCalendarWidget QAbstractItemView:disabled
+{
+color: rgb(64, 64, 64);
+}</string>
+      </property>
+      <property name="calendarPopup">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="widget_2" native="true">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>-10</y>
+       <width>611</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>40</y>
+        <width>80</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>tuna</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Tuna_filter_checkbox">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>10</y>
+        <width>71</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Tuna_filter</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Shark_filter_checkbox">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>10</y>
+        <width>81</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Shark_filter</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Marlin_filter_checkbox">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>10</y>
+        <width>75</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Marlin_filter</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Allfish_filter_checkbox">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>10</y>
+        <width>91</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>All_fish_filter</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>30</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>RadioButton</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>279</x>
+      <y>19</y>
+      <width>151</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>70</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>for_tuna</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>80</y>
+      <width>181</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="editable">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1124</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menutest">
+    <property name="title">
+     <string>test</string>
+    </property>
+    <addaction name="actionreset"/>
+    <addaction name="actionclear"/>
+   </widget>
+   <addaction name="menutest"/>
+  </widget>
+  <action name="actionreset">
+   <property name="text">
+    <string>reset</string>
+   </property>
+  </action>
+  <action name="actionclear">
+   <property name="text">
+    <string>clear</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QQuickWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">QtQuickWidgets/QQuickWidget</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
