@@ -30,7 +30,7 @@ protected:
     Ui::MainWindow *ui;
 
 signals:
-    void setCenter(QVariant,QVariant,QVariant);
+    void setCenter(QVariant,QVariant);
     void remove();
     void testd(QVariant);
 
@@ -38,7 +38,7 @@ private slots:
     void on_actionreset_triggered();
     void on_actionclear_triggered();
     void on_pushButton_clicked();
-
+    void on_pushButton_4_clicked();
     void on_pushButton_3_clicked();
     void on_pushButton_2_clicked();
     void on_comboBox_currentIndexChanged(const QString &arg1);
@@ -52,7 +52,5 @@ private slots:
     void on_pushButton_6_clicked();
     void on_pushButton_7_clicked();
 
-    void on_pushButton_4_clicked();
-    void on_pushButton_8_clicked();
 };
 #endif // MAINWINDOW_H

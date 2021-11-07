@@ -15,7 +15,6 @@
 #include <QtCharts>
 #include <QDate>
 #include <QTextCodec>
-#include <QtCore>
 
 
 class filter_main_fun{
@@ -433,7 +432,6 @@ private:
 
     QVector<int> *sort_fish_sum= new QVector<int>;
 
-
     int *fish_max=new int;
 
 };
@@ -487,15 +485,13 @@ class plot_table{
 
 database_getdata *ddb = new database_getdata();
 QCompleter *completer = new QCompleter();
-QChartView *chartaa;
-QChartView *chartbb;
+
 
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-
     //ui->dateEdit->setDate(QDate::currentDate());
     //ui->dateEdit->setMinimumDate(QDate::currentDate().addDays(-3650));
     //ui->dateEdit->setMaximumDate(QDate::currentDate().addDays(365));
@@ -507,11 +503,11 @@ MainWindow::MainWindow(QWidget *parent)
     //qDebug() << ttemp<< endl;
     if (ddb->statue()){
 
-        //QMessageBox::information(this,"connect","connect");
+        QMessageBox::information(this,"connect","connect");
         ui->setupUi(this);
         ui->quickWidget->setSource(QUrl(QString("qrc:/map.qml")));
         ui->quickWidget->show();
-        //ui->widget_2->setVisible(false);
+        ui->widget_2->setVisible(false);
 
 
 
@@ -537,6 +533,7 @@ MainWindow::MainWindow(QWidget *parent)
     QStringList wordList;
     wordList << "alpha" << "omega" << "omicron" << "zeta";
     QStringList wwordList;
+    wwordList << "aalpha" << "oomega" << "oomicron" << "zzeta";
 
 
     //QCompleter *completer = new QCompleter(wordList, this);
@@ -554,14 +551,10 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     //ui->comboBox->addItem("1230");
-    ui->pushButton_7->setVisible(false);
     auto obj = ui->quickWidget->rootObject();
-    connect(this,SIGNAL(setCenter(QVariant,QVariant,QVariant)),obj,SLOT(setCenter(QVariant,QVariant,QVariant)));
+    connect(this,SIGNAL(setCenter(QVariant,QVariant)),obj,SLOT(setCenter(QVariant,QVariant)));
     connect(this,SIGNAL(remove()),obj,SLOT(remove()));
     connect(this,SIGNAL(testd(QVariant )),obj,SLOT(testd(QVariant)));
-
-    ui->dateEdit->calendarWidget()->setLocale(QLocale::English);
-    ui->dateEdit_2->calendarWidget()->setLocale(QLocale::English);
     //teee->test1();
 }
 
@@ -572,7 +565,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionreset_triggered()
 {
-    emit setCenter(22.9989,120.2169,0);
+    emit setCenter(22.9989,120.2169);
 }
 
 
@@ -584,31 +577,57 @@ void MainWindow::on_actionclear_triggered()//clear()
 
 void MainWindow::on_pushButton_clicked()
 {
-       emit setCenter(24,121,6);
+    QVector<QStringList> data =ddb->get_data();
+    //qDebug() <<data.size() << endl;
+    emit remove();
+
+    for (int i=0;i<data.size();i++)
+    {
+       emit testd(data[i]);
+    }
 
 }
+
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    if (ui->widget_3->isVisible()){
+        ui->widget_2->setVisible(true);
+        ui->widget_3->setVisible(false);
+
+    }else
+    {
+        ui->widget_2->setVisible(false);
+        ui->widget_3->setVisible(true);
+    }
+
+}
+
 
 void MainWindow::on_pushButton_3_clicked()
 {
-       emit setCenter(20,160,3);
+    qDebug() <<"press 3" << endl;
+    QMessageBox::information(this,"statue",ui->comboBox->currentText());
+    ui->quickWidget->setVisible(0);
 
 }
-
-
-
-
 
 
 void MainWindow::on_pushButton_2_clicked()
 {
-   emit remove();
+    ui->quickWidget->setVisible(1);
+    QVector<QStringList> data =ddb->get_data();
+
+    filter_data ss;
+
+    QVector<QStringList> ddata = ss.filter_tuna(data,"tuna");
+    qDebug() <<"press 2" << endl;
+    qDebug() <<ddata << endl;
 
 }
 
 void MainWindow::plot_map1(){
-    delete chartaa;
-    delete chartbb;
-    //chartaa->removeAllSeries();
+    //ui->stackedWidget->setCurrentIndex(0);
     ui->ChartFrame->setVisible(false);
     ui->ChartFrame2->setVisible(false);
     emit remove();
@@ -632,16 +651,15 @@ void MainWindow::plot_map1(){
     QChartView *chartView = new QChartView(chart);
     chartView->setParent(ui->ChartFrame);
     chartView->setRenderHint(QPainter::Antialiasing);
-    chartView->resize(721,550);
+    chartView->resize(721,481);
     chartView->update();
 ////////////////////////////////////////////////////////////////
     QChartView *chartView2 = new QChartView(chart2);
     chartView2->setParent(ui->ChartFrame2);
     chartView2->setRenderHint(QPainter::Antialiasing);
-    chartView2->resize(721,550);
+    chartView2->resize(721,481);
     chartView2->update();
-    chartaa=chartView;
-    chartbb=chartView2;
+
     ////////////////////////////////////////////////////////////
     QStringList Id_array = f1->get_Id_array();
 
@@ -673,14 +691,11 @@ void MainWindow::plot_map1(){
     delete f1;
     delete f2;
     delete f3;
-
      ui->ChartFrame->setVisible(true);
      ui->ChartFrame2->setVisible(true);
 }
 
 void MainWindow::plot_map1(int i){
-    delete chartaa;
-    delete chartbb;
     ui->ChartFrame->setVisible(false);
     ui->ChartFrame2->setVisible(false);
     emit remove();
@@ -704,13 +719,13 @@ void MainWindow::plot_map1(int i){
     QChartView *chartView = new QChartView(chart);
     chartView->setParent(ui->ChartFrame);
     chartView->setRenderHint(QPainter::Antialiasing);
-    chartView->resize(721,550);
+    chartView->resize(721,481);
     chartView->update();
 ////////////////////////////////////////////////////////////////
     QChartView *chartView2 = new QChartView(chart2);
     chartView2->setParent(ui->ChartFrame2);
     chartView2->setRenderHint(QPainter::Antialiasing);
-    chartView2->resize(721,550);
+    chartView2->resize(721,481);
     chartView2->update();
 
     ////////////////////////////////////////////////////////////
@@ -735,12 +750,9 @@ void MainWindow::plot_map1(int i){
     for (int i=0;i<d_data.length();i++){
         emit testd((d_data)[i]);
     }
-    chartaa=chartView;
-    chartbb=chartView2;
     delete f1;
     delete f2;
     delete f3;
-
      ui->ChartFrame->setVisible(true);
      ui->ChartFrame2->setVisible(true);
 }
@@ -944,7 +956,7 @@ void MainWindow::on_comboBox_currentIndexChanged(const QString &arg1)
 
 void MainWindow::Change_buttom_statue(int i){
     ui->Allfish_filter_checkbox->setChecked(i);
-//ui->radioButton->setChecked(i);
+    ui->radioButton->setChecked(i);
     ui->Marlin_filter_checkbox->setChecked(i);
     ui->Shark_filter_checkbox->setChecked(i);
     ui->Tuna_filter_checkbox->setChecked(i);
@@ -956,6 +968,7 @@ void MainWindow::on_Tuna_filter_checkbox_clicked()
     plot_map1();
     ui->ChartFrame->update();
     ui->ChartFrame2->update();
+    qDebug() <<"sss" << endl;
     if (Qt::Checked == ui->Tuna_filter_checkbox->checkState()){
         //Change_buttom_statue();
         ui->Tuna_filter_checkbox->setChecked(1);
@@ -1059,27 +1072,11 @@ void MainWindow::on_pushButton_5_clicked()
 
 void MainWindow::on_pushButton_6_clicked()
 {
-    ui->pushButton_6->setVisible(false);
-    ui->pushButton_7->setVisible(true);
     ui->stackedWidget->setCurrentIndex(1);
 }
 
 
 void MainWindow::on_pushButton_7_clicked()
 {
-    ui->pushButton_7->setVisible(false);
-    ui->pushButton_6->setVisible(true);
     ui->stackedWidget->setCurrentIndex(0);
 }
-
-void MainWindow::on_pushButton_4_clicked()
-{
-    emit setCenter(20,-25,3);
-}
-
-
-void MainWindow::on_pushButton_8_clicked()
-{
-    emit setCenter(-20,80,3);
-}
-
