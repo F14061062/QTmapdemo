@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>993</width>
-    <height>690</height>
+    <width>947</width>
+    <height>646</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -32,8 +32,8 @@
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>160</y>
+      <x>20</x>
+      <y>150</y>
       <width>181</width>
       <height>471</height>
      </rect>
@@ -595,8 +595,8 @@ color: rgb(255, 255, 255);</string>
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>30</y>
+      <x>200</x>
+      <y>0</y>
       <width>751</width>
       <height>631</height>
      </rect>
@@ -619,7 +619,7 @@ color: rgb(255, 255, 255);</string>
      <enum>QFrame::NoFrame</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QQuickWidget" name="quickWidget">
@@ -969,8 +969,8 @@ background-color: rgb(195, 195, 195);</string>
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>10</y>
+      <x>20</x>
+      <y>0</y>
       <width>171</width>
       <height>81</height>
      </rect>
@@ -997,7 +997,7 @@ font: 60pt &quot;Imprint MT Shadow&quot;;</string>
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>80</y>
+      <y>70</y>
       <width>141</width>
       <height>81</height>
      </rect>
@@ -1022,6 +1022,24 @@ font: 60pt &quot;Imprint MT Shadow&quot;;</string>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>947</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menutest">
+    <property name="title">
+     <string>test</string>
+    </property>
+    <addaction name="actionreset"/>
+    <addaction name="actionclear"/>
+   </widget>
+   <addaction name="menutest"/>
+  </widget>
   <action name="actionreset">
    <property name="text">
     <string>reset</string>

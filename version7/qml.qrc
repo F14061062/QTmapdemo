@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>map.qml</file>
+        <file>mar.png</file>
+        <file>shark.png</file>
+        <file>tuna.png</file>
+        <file>right.png</file>
+    </qresource>
+</RCC>
